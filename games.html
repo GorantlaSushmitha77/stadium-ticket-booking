@@ -1,0 +1,60 @@
+{% include 'ahead.html'%}
+<div class="row">
+  <body class="view-bgr"></body>
+  <div class="col-6 p-40">
+      <div class="card table-head  text-white width mt-80  ml-50 p-20">
+        <form action="game_action" method="post">
+            <div class="text-center title">
+              Add Games Here
+            </div>
+            <div class="p-5">
+              <label for="game_title">Game Title</label>
+              <input type="text" name="game_title" class="form-control" id="game_title" placeholder=" Enter game title" required>
+            </div>
+            <div class="p-5">
+              <label for="game_type">Game Type</label>
+              <input type="text" name="game_type" class="form-control"  id="game_type" placeholder=" enter game type" required>
+            </div>
+            <div class="p-5">
+              <input type="submit"  class="btn btn-primary" value="Add">
+            </div>
+        </form>
+  <div class="p-10">
+    {% if message!= None %}
+    {{message}}
+    {% endif %}
+  </div>
+
+      </div>
+
+  </div>
+<div class="col-6  p-50 mt-10">
+        <div class="row">
+            {% for game in games%}
+            <div class="col-6 p-5 ">
+                <div class="card mt-10  text-white table-head p-10">
+                    <div>{{game['game_title']}}</div>
+                    <div>({{game['game_type']}})</div>
+                    <div class="row h6">
+                        <div class="col-6">
+                            <div class="p-10 mt-10">
+                            <a href="/add_schedules?game_id={{game['_id']}}" class="btn btn-primary ">Add Schedules</a>
+                        </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-10 mt-10">
+                                <a href="/view_schedules?game_id={{game['_id']}}" class="btn btn-primary ">view Schedules</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+

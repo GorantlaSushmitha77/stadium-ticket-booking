@@ -1,0 +1,62 @@
+{% include 'ahead.html'%}
+<div class="row ">
+    <body class="view-bgr"></body>
+    <div class="col-6 p-40">
+        <div class=" card table-head text-white width mt-80  ml-30 p-20">
+            <form action="stadium_action" method="post">
+                    <div class=" text-center title">
+                        Add Stadiums Here
+                    </div>
+                    <div class="p-5">
+                        <label for="stadium_name">Stadium Name</label>
+                        <div class="p-5">
+                            <input type="text" name="stadium_name" class="form-control" id="stadium_name" placeholder=" Enter stadium name" required>
+                        </div>
+
+                    </div>
+                    <div class="p-5">
+                        <label for="stadium_location">Stadium Location</label>
+                        <div class="p-5">
+                            <input type="textarea" name="stadium_location" class="form-control" id="stadium_location" placeholder=" Enter stadium location" required>
+                        </div>
+
+                    </div>
+                    <div class="p-5">
+                        <input type="submit" class="btn btn-primary" value="Add">
+                    </div>
+            </form>
+            <div class="p-10">
+                {% if message!= None %}
+                  {{message}}
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+    <div class="col-6  p-50 mt-10">
+        <div class="row">
+            {% for stadium in stadiums%}
+            <div class="col-6 p-5 ">
+                <div class="card mt-10  text-white table-head p-10">
+                    <div>{{stadium['stadium_name']}}</div>
+                    <div>({{stadium['stadium_location']}})</div>
+                    <div class="row h6">
+                        <div class="col-6">
+                            <div class="p-10 mt-10">
+                            <a href="/add_schedules?stadium_id={{stadium['_id']}}" class="btn btn-primary ">Add Schedules</a>
+                        </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-10 mt-10">
+                                <a href="/view_schedules?stadium_id={{stadium['_id']}}" class="btn btn-primary ">view Schedules</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             {% endfor %}
+        </div>
+    </div>
+</div>
+
+

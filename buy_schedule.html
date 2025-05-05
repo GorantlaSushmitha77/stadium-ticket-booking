@@ -1,0 +1,45 @@
+{% include 'ghead.html'%}
+<body class="view-bgr"></body>
+<form action="buy_schedule_action">
+  <input type="hidden" name="schedule_id" value="{{schedule_id}}">
+    <input type="hidden" name="price" value="{{schedule_price}}">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div class="card1 mt-30 moon">
+                <div class="mt-10 p-10 h5 text-center"> Total Price :${{schedule_price}}</div>
+                <div  class="mt-5 p-10">
+                    <label for="card_type">Choose Card Type</label>
+                    <select name="card_type" class="form-control" id="card_type">
+                        <option value="credit_card">Credit Card</option>
+                        <option value="debit_card">Debit Card</option>
+                    </select>
+                </div>
+                <div class="mt-5 p-10" >
+                    <label for="card_number">Card Number</label>
+                    <input type="number" name="card_number" id="card_number" required class="form-control" placeholder="Enter Card Number" required>
+                </div>
+                <div class="mt-5 p-10">
+                    <label for="holder_name">Holder Name</label>
+                    <input type="text" name="holder_name" id="holder_name" required class="form-control" placeholder="Enter Holder Name" required>
+                </div>
+                <div class="mt-5 p-10">
+                    <label for="cvv">CVV</label>
+                    <input type="number" name="cvv" id="cvv" class="form-control" required placeholder="Enter cvv" required>
+                </div>
+                <div class="mt-5 p-10">
+                    <label for="expire_date">Expire Date</label>
+                    <input type="month" name="expire_date" id="expire_date" class="form-control" required placeholder="Enter Expire Date" required>
+                </div>
+                <div class="mt-5 p-10">
+                    <input type="submit" class="btn btn-primary" value="Pay and Book">
+                </div>
+            </div>
+
+    </div>
+    <div class="col-4"></div>
+  </div>
+
+
+
+</form>

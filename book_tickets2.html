@@ -1,0 +1,65 @@
+<body class="view-bgr"></body>
+{% if session['role'] == 'admin' %}
+    {% include 'ahead.html'%}
+{% endif %}
+{% if session['role'] == 'game_host' %}
+    {% include 'ghead.html'%}
+{% endif %}
+{% if session['role'] == 'audien' %}
+    {% include 'auhead.html'%}
+{% endif %}
+<form action="book_tickets3">
+    <input type="hidden" name="booking_id" value="{{booking['_id']}}">
+    <input type="hidden" name="price" value="{{price}}">
+    <div class="row mt-20 p-20">
+        <div class="col-8">
+            {% for selected_seat in selected_seats %}
+                <input type="hidden" name="seat_number{{selected_seat}}" value="{{selected_seat}}" required>
+                <div class="row mt-10 p-5">
+                    <div class="col-4 p-10 text-end">
+                        seat {{selected_seat}}
+                    </div>
+                    <div class="col-4 p-5">
+                        <input type="text" id="name{{selected_seat}}" name="name{{selected_seat}}"  class="form-control" placeholder="enter person name" required>
+                    </div>
+                    <div class="col-4 p-5">
+                        {% if booking['persons_count']=="2" %}
+                            <input type="text" name="name2{{selected_seat}}" class="form-control" placeholder="Enter 2nd person name" required>
+                        {% endif%}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-4">
+            <div class="card1 moon">
+                <div class="mt-10 p-10"> Total Price :${{price}}</div>
+                <div  class="mt-5 p-10">
+                    <label for="card_type">Choose Card Type</label>
+                    <select name="card_type" class="form-control" id="card_type">
+                        <option value="credit_card">Credit Card</option>
+                        <option value="debit_card">Debit Card</option>
+                    </select>
+                </div>
+                <div class="mt-5 p-10" >
+                    <label for="card_number">Card Number</label>
+                    <input type="number" name="card_number" id="card_number" class="form-control" placeholder="Enter Card Number" required>
+                </div>
+                <div class="mt-5 p-10">
+                    <label for="holder_name">Holder Name</label>
+                    <input type="text" name="holder_name" id="holder_name" class="form-control" placeholder="Enter Holder Name" required>
+                </div>
+                <div class="mt-5 p-10">
+                    <label for="cvv">CVV</label>
+                    <input type="number" name="cvv" id="cvv" class="form-control" placeholder="Enter cvv" required>
+                </div>
+                <div class="mt-5 p-10">
+                    <label for="expire_date">Expire Date</label>
+                    <input type="month" name="expire_date" id="expire_date" class="form-control" placeholder="Enter Expire Date" required>
+                </div>
+                <div class="mt-5 p-10">
+                    <input type="submit" class="btn btn-primary" value="Pay and Book">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

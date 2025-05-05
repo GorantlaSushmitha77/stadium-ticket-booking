@@ -1,0 +1,46 @@
+{% include 'ahead.html'%}
+<body class="view-bgr">.</body>
+<div class="p-20">
+  <div class="text-center title"> Gamehosts List</div>
+  <table border="1" class="table mt-30">
+    <thead>
+      <tr class="table-head text-white">
+       
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>email</th>
+        <th>phone</th>
+        <th>address</th>
+        <th>zipcode</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for game_host in game_hosts %}
+      <tr>
+        
+        <td>{{game_host['first_name']}}</td>
+        <td>{{game_host['last_name']}}</td>
+        <td>{{game_host['email']}}</td>
+        <td>{{game_host['phone']}}</td>
+        <td>{{game_host['address']}}</td>
+        <td>{{game_host['zipcode']}}</td>
+        <td>{{game_host['status']}}</td>
+        <td>
+          {% if game_host['status'] == 'unauthorized' %}
+          <a href="authorize_game_host?game_host_id={{game_host['_id']}}" class="btn-secondary btn" >Authorize Now</a>
+          {% else %}
+           <a href="unauthorize_game_host?game_host_id={{game_host['_id']}}" class="btn-danger btn" >Unauthorize Now</a>
+          {% endif %}
+        </td>
+      </tr>
+
+
+      {% endfor%}
+    </tbody>
+
+  </table>
+
+
+</div>

@@ -1,0 +1,101 @@
+{% include 'ahead.html'%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#team1").on("change", ()=>{
+    let team1 = $("#team1").val()
+    let team2 = $("#team2").val()
+    if(team1==team2) {
+      alert("Team 1 should not be same as Team 2")
+      $("#team1").val("")
+      $("#team2").val("")
+    }
+  })
+  $("#team2").on("change", ()=>{
+    let team1 = $("#team1").val()
+    let team2 = $("#team2").val()
+    if(team1==team2) {
+      alert("Team 1 should not be same as Team 2")
+      $("#team1").val("")
+      $("#team2").val("")
+    }
+  })
+  $("#start_date").on("change", ()=>{
+        let start_date = $("#start_date").val()
+        start_date = new Date(start_date);
+        console.log(start_date.getDate())
+        console.log(start_date)
+  })
+});
+</script>
+<form action="add_schedules_action" method="post">
+  <div class="row">
+    <body class="view-bgr"></body>
+     <div class="col-4"></div>
+     <div class="col-4 p-20 mt-50">
+        <div class="title text-center">Add Schedule Here</div>
+         <div class="card  text-white table-head p-20 mt-10">
+              <div class="p-5">
+                  <label>Stadium Name</label>
+                  <select name="stadium_id"  class="form-control" required >
+                      <option selected="selected" value="" disabled="disabled">Please Select Stadium</option>
+                      {% for stadium in stadiums %}
+                        <option value="{{stadium['_id']}}" {% if str(stadium['_id'])==str(stadium_id) %}selected {% endif%} >{{stadium['stadium_name']}}</option>
+                      {% endfor %}
+
+                  </select>
+               </div>
+              <div class="p-5">
+                    <label>Game Name</label>
+                    <select name="game_id" class="form-control" required >
+                      <option selected="selected" value="" disabled="disabled">Please Select Game</option>
+                      {% for game in games %}
+                        <option value="{{game['_id']}}" {% if str(game['_id'])==str(game_id) %} selected {% endif %}>{{game['game_title']}}</option>
+                      {% endfor %}
+
+                  </select>
+              </div>
+              <div class="p-5">
+                  <label>Team 1</label>
+                  <select name="team1_id" class="form-control"  id="team1" required >
+                      <option selected="selected" value="" disabled="disabled">Please Select Team 1</option>
+                      {% for team in teams %}
+                        <option value="{{team['_id']}}">{{team['team_name']}}</option>
+                      {% endfor %}
+
+                  </select>
+              </div>
+              <div class="p-5">
+                  <label>Team 2</label>
+                  <select name="team2_id" class="form-control" id="team2" required >
+                      <option selected="selected" value="" disabled="disabled">Please Select Team 2</option>
+                      {% for team in teams %}
+                        <option value="{{team['_id']}}">{{team['team_name']}}</option>
+                      {% endfor %}
+
+                  </select>
+              </div>
+              <div class="p-5">
+                <label for="start_date">Start Date</label>
+                <input type="datetime-local" name="start_date" id="start_date" min="{{today}}" class="form-control" placeholder="Enter Start Date" required>
+              </div>
+              <div class="p-5">
+                <label for="end_date">End Date</label>
+                <input type="datetime-local" name="end_date" id="end_date" min="{{today}}" class="form-control" placeholder="Enter End Date" required>
+              </div>
+             <div class="p-5">
+                <label for="end_date">Schedule Price (game host need to pay to grab)</label>
+                <input type="number" name="schedule_price" id="schedule_price" min="1" class="form-control" placeholder="Enter Schedule Price" required>
+              </div>
+              <div class="p-5">
+                <input type="submit" value="Next" class="btn btn-primary">
+              </div>
+
+
+         </div>
+
+      </div>
+    <div class="col-4"></div>
+
+  </div>
+</form>

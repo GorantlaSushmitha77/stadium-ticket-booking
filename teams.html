@@ -1,0 +1,61 @@
+{% include 'ahead.html'%}
+<div class="row">
+  <body class="view-bgr"></body>
+  <div class="col-6 p-40">
+      <div class="card table-head text-white width mt-50  ml-50 p-20">
+          <form action="team_action" method="post">
+            <div class="title text-center">
+              Add Teams Here
+            </div>
+                  <div class="p-10">
+                    <label for="team_name">Team Name</label>
+                    <input type="text" name="team_name" id="team_name" class="form-control" placeholder=" Enter team name" required>
+                  </div>
+                  <div class="p-10" >
+                    <label for="no_of_players">No of Players</label>
+                    <input type="number" name="no_of_players" id="no_of_players"  class="form-control"placeholder=" enter no of players" required>
+                  </div>
+                  <div class="p-10">
+                    <label for="coach_name">Coach Name</label>
+                    <input type="text" name="coach_name" class="form-control" id="coach_name" placeholder=" enter coach name" required>
+                  </div>
+                  <div class="p-10">
+                       <input type="submit" class="btn btn-primary" value="Add">
+                  </div>
+
+          </form>
+          <div class="p-10">
+            {% if message!= None %}
+            {{message}}
+            {% endif %}
+          </div>
+
+      </div>
+  </div>
+  <div class="col-6 p-80 mt-50">
+      <div class="text-center title p-5 ">Teams List</div>
+    <table border="1" class="table">
+  <thead>
+    <tr class="table-head text-white">
+      <th>Team Name</th>
+      <th>No of Players</th>
+      <th>Coach Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for team in teams%}
+    <tr>
+      <td>{{team['team_name']}}</td>
+      <td>{{team['no_of_players']}}</td>
+      <td>{{team['coach_name']}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+  </div>
+
+
+
+
+</div>

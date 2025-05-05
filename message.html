@@ -1,0 +1,16 @@
+{% if 'role' not in session %}
+    {% include 'head.html' %}
+{% endif %}
+{% if 'role' in session %}
+    {% if session['role'] == 'admin' %}
+        {% include 'ahead.html'%}
+    {% endif %}
+    {% if session['role'] == 'game_host' %}
+        {% include 'ghead.html'%}
+    {% endif %}
+    {% if session['role'] == 'audien' %}
+        {% include 'auhead.html'%}
+    {% endif %}
+{% endif %}
+<body class="view-bgr text-center "></body>
+<h2 class="mt-50"> {{message}}</h2>

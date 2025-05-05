@@ -1,0 +1,99 @@
+{% if session['role'] == 'admin' %}
+    {% include 'ahead.html'%}
+{% endif %}
+{% if session['role'] == 'game_host' %}
+    {% include 'ghead.html'%}
+{% endif %}
+{% if session['role'] == 'audien' %}
+    {% include 'auhead.html'%}
+{% endif %}
+<body class="view-bgr"></body>
+{% for booking in bookings %}
+    {% set tickets = get_tickets_by_booking_id(booking['_id']) %}
+    {% set schedule = get_schedule_by_schedule_id(booking['schedule_id']) %}
+    {%set stadium =get_stadium_by_stadium_id(schedule['stadium_id'])%}
+    {%set game =get_game_by_game_id(schedule['game_id'])%}
+    {%set team1 =get_team_by_team_id(schedule['team1_id'])%}
+    {%set team2 =get_team_by_team_id(schedule['team2_id'])%}
+    <div class=" card1  mt-20 p-10">
+        <div class="row">
+            <div class="col-3">
+                <div class="row">
+                    <div class="p-10">
+                        {% if session['role'] != 'audien' %}
+                            Schedule Price <b>${{schedule['schedule_price']}}</b>
+                        {% endif %}
+                    </div>
+                    <div class="p-10">
+                        {% if schedule['start_date']>today and booking['status'] == 'Booked'%}
+                        <a href="cancel_booking?booking_id={{booking['_id']}}" class="btn btn-primary">Cancel</a>
+                        {% endif %}
+                    </div>
+                    <div class="p-10">
+                        <a href="payments?booking_id={{booking['_id']}}" class="btn btn-primary">Payments</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="h4 text-center">{{schedule['start_date'].strftime("%d-%m-%Y %I:%M %p")}}   to   {{schedule['end_date'].strftime("%d-%m-%Y %I:%M %p")}}</div>
+            </div>
+            <div class="col-3 text-right">
+                 {% if schedule['status'] == 'Published' %}
+                    {% set game_host = get_game_host_by_game_host_id(schedule['game_host_id']) %}
+                <div>Game Host: <b>{{game_host['first_name']}} {{game_host['last_name']}}</b></div>
+                <div><b>{{game_host['email']}}</b></div>
+                <div><b>{{game_host['phone']}}</b></div>
+                 {% endif %}
+                {% if session['role'] != 'audien' %}
+                    Status: <b>{{schedule['status']}}</b>
+                    {% if schedule['status'] == 'Not Published' and session['role'] == 'game_host'%}
+                        <a href="buy_schedule?schedule_id={{schedule['_id']}}&schedule_price={{schedule['schedule_price']}}" class="btn btn-primary">Buy Schedule</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row mt-30">
+            <div class="col-3 p-10">
+                 <div class="h4">{{game['game_title']}}</div>
+                 <div class="">{{game['game_type']}}</div>
+            </div>
+            <div class="col-3 p-10">
+                <div class="h4">{{stadium['stadium_name']}}</div>
+                <div class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                      <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+                      <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    </svg> {{stadium['stadium_location']}}
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-5 p-5">
+                        <div class="h4">{{team1['team_name']}}</div>
+                        <div>{{team1['no_of_players']}} players</div>
+                        <div>Coach - {{team1['coach_name']}}</div>
+                    </div>
+                    <div class="col-2 h3 text-center p-10">VS</div>
+                    <div class="col-5 text-right">
+                        <div class="h4">{{team2['team_name']}}</div>
+                        <div>{{team2['no_of_players']}} players</div>
+                        <div>Coach - {{team2['coach_name']}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <div class="row">
+        {% for ticket in tickets %}
+          <div class="col-2 p-10">
+            <div class="card1 moon p-10">
+              <div class="seat_number text-center">Seat: {{ticket['seat_number']}}</div>
+              <div class="text-center">{{ticket['name']}}</div>
+                {% if 'name2' in ticket %}
+                    <div class="text-center">{{ticket['name2']}}</div>
+                {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+</div>
+{% endfor %}

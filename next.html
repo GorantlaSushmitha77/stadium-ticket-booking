@@ -1,0 +1,85 @@
+{% include 'ahead.html'%}
+<body class="view-bgr"></body>
+<form action="add_schedules_action2" method="post">
+    <input type="hidden" name="stadium_id" value="{{stadium_id}}">
+    <input type="hidden" name="game_id" value="{{game_id}}">
+    <input type="hidden" name="team1_id" value="{{team1_id}}">
+    <input type="hidden" name="team2_id" value="{{team2_id}}">
+    <input type="hidden" name="start_date" value="{{start_date}}">
+    <input type="hidden" name="end_date" value="{{end_date}}">
+    <input type="hidden" name="schedule_price" value="{{schedule_price}}">
+
+     <div class="p-20">
+            <fieldset class="table-head mt-40">
+                <legend class="  h2 table-head  ">Orchestra :</legend>
+                <div class="row h5 p-20 text-white mt-10">
+                    <div class="col-3 p-5">
+                        <label for="orchestra_couple_seats">Orchestra Couple Seats</label>
+                        <input type="number" class="form-control" name="orchestra_couple_seats" id="orchestra_couple_seats" placeholder="enter number of seats" required>
+                    </div>
+                    <div class="col-3 p-5">
+                        <label for="orchestra_couple_seats_price">Orchestra Couple Seats Price</label>
+                        <input type="number" name="orchestra_couple_seats_price" id="orchestra_couple_seats_price" class="form-control" placeholder="enter price" required>
+                    </div>
+                    <div class="col-3 p-5">
+                        <label for="orchestra_general_seats">Orchestra General Seats</label>
+                        <input type="number" name="orchestra_general_seats" id="orchestra_general_seats" class="form-control" placeholder="enter number of seats" required>
+                    </div>
+                    <div class="col-3 p-5" >
+                        <label for="orchestra_general_seats_price">Orchestra General Seats Price</label>
+                        <input type="number" name="orchestra_general_seats_price" id="orchestra_general_seats_price" class="form-control" placeholder="enter price" required>
+                    </div>
+                </div>
+            </fieldset>
+                <fieldset class="table-head mt-20">
+                <legend class="  h2 table-head  ">Mezzanine :</legend>
+                <div class="row h5 p-20 text-white mt-10">
+                    <div class="col-3 p-5">
+                        <label for="mezzanine_couple_seats">Mezzanine Couple Seats</label>
+                        <input type="number" class="form-control" name="mezzanine_couple_seats" id="mezzanine_couple_seats" placeholder="enter number of seats" required>
+                    </div>
+                    <div class="col-3 p-5">
+                        <label for="mezzanine_couple_seats_price">Mezzanine Couple Seats Price</label>
+                        <input type="number" name="mezzanine_couple_seats_price" id="mezzanine_couple_seats_price" class="form-control" placeholder="enter price" required>
+                    </div>
+                    <div class="col-3 p-5">
+                        <label for="mezzanine_general_seats">Mezzanine General Seats</label>
+                        <input type="number" name="mezzanine_general_seats" id="mezzanine_general_seats" class="form-control" placeholder="enter number of seats" required>
+                    </div>
+                    <div class="col-3 p-5" >
+                        <label for="mezzanine_general_seats_price">Mezzanine General Seats Price</label>
+                        <input type="number" name="mezzanine_general_seats_price" id="mezzanine_general_seats_price" class="form-control" placeholder="enter price" required>
+                    </div>
+                </div>
+            </fieldset>
+                <fieldset class="table-head mt-20">
+                <legend class="  h2 table-head  ">Balcony :</legend>
+                <div class="row h5 text-white p-20 mt-10">
+                    <div class="col-3 p-5">
+                        <label for="balcony_couple_seats">Balcony Couple Seats</label>
+                        <input type="number" class="form-control" name="balcony_couple_seats" id="balcony_couple_seats" placeholder="enter number of seats">
+                    </div>
+                    <div class="col-3 p-5">
+                        <label for="balcony_couple_seats_price">Balcony Couple Seats Price</label>
+                        <input type="number" name="balcony_couple_seats_price" id="balcony_couple_seats_price" class="form-control" placeholder="enter price" required>
+                    </div>
+                    <div class="col-3 p-5">
+                        <label for="balcony_general_seats">Balcony General Seats</label>
+                        <input type="number" name="balcony_general_seats" id="balcony_general_seats" class="form-control" placeholder="enter number of seats" required>
+                    </div>
+                    <div class="col-3 p-5" >
+                        <label for="balcony_general_seats_price">Balcony General Seats Price</label>
+                        <input type="number" name="balcony_general_seats_price" id="balcony_general_seats_price" class="form-control" placeholder="enter price" required>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-9"></div>
+                <div class="col-3 p-50">
+                    <input type="submit" class=" btn btn-primary " value="Add Schedule">
+                </div>
+
+            </div>
+        </div>
+
+</form>

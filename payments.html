@@ -1,0 +1,57 @@
+{% if session['role'] == 'admin' %}
+    {% include 'ahead.html'%}
+{% endif %}
+{% if session['role'] == 'game_host' %}
+    {% include 'ghead.html'%}
+{% endif %}
+{% if session['role'] == 'audien' %}
+    {% include 'auhead.html'%}
+{% endif %}
+<body class="view-bgr"></body>
+<div class="row">
+  <div class="col-4"></div>
+  <div class="col-4">
+    <div class="card1 moon p-20 mt-80">
+      <div class="text-center h4"> Payment Details</div>
+      <div class="mt-10">
+        <div class="card-label">Admin Commission</div>
+        <div class="card-text">$ {{payment['admin_commission']}}</div>
+      </div>
+      <div class="mt-10">
+        <div class="card-label">Home Host Amount</div>
+        <div class="card-text">$ {{payment['game_host_price']}}</div>
+      </div>
+      {% if 'refund_price' in payment %}
+      <div class="mt-10">
+        <div class="card-label">Refunded</div>
+        <div class="card-text">$ {{payment['refund_price']}}</div>
+      </div>
+      {% endif %}
+      <div class="mt-10">
+        <div class="card-label">Card Type</div>
+        <div class="card-text">{{payment['card_type']}}</div>
+      </div>
+      <div class="mt-10">
+        <div class="card-label">Card Number</div>
+        <div class="card-text">{{payment['card_number']}}</div>
+      </div>
+      <div class="mt-10">
+        <div class="card-label">Holder Name</div>
+        <div class="card-text">{{payment['holder_name']}}</div>
+      </div>
+      <div class="mt-10">
+        <div class="card-label">CVV</div>
+        <div class="card-text">{{payment['cvv']}}</div>
+      </div>
+      <div class="mt-10">
+        <div class="card-label">Expire Date</div>
+        <div class="card-text">{{payment['expire_date']}}</div>
+      </div>
+      <div class="mt-10">
+        <div class="card-label">Status</div>
+        <div class="card-text">{{payment['status']}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4"></div>
+</div>
